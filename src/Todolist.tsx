@@ -1,32 +1,29 @@
-function sum(a: number, b: number) {
-    alert(a + b)
-}
-
-// sum(12,14)
-
-export type TaskType ={
+export type TaskType = {
     id: number,
     title: string,
     isDone: boolean
 }
 
- type PropsType = {
+type PropsType = {
     title: string,
     tasks: Array<TaskType>
 }
 
-export function Todolist(props: PropsType) { //props = {title: 'What to learn'}
+export function Todolist(props: PropsType) {
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
-                <input />
+                <input/>
                 <button>+</button>
             </div>
             <ul>
-                <li><input type='checkbox' checked={props.tasks[0].isDone}/><span>{props.tasks[0].title}</span></li>
-                <li><input type='checkbox' checked={props.tasks[1].isDone}/><span>{props.tasks[1].title}</span></li>
-                <li><input type='checkbox' checked={props.tasks[2].isDone}/><span>{props.tasks[2].title}</span></li>
+                {props.tasks.map((task) => {
+                    return <li key={task.id}>
+                        <input type="checkbox" checked={task.isDone}/>
+                        <span>{task.title}</span>
+                    </li>
+                })}
             </ul>
             <div>
                 <button>All</button>
